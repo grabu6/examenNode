@@ -1,103 +1,116 @@
-const DB = require("./db.json");
+const DB=require("./db.json");
 const { saveToDatabase } = require("./utils");
 
-const getAllProductes = () => {
-  try {
-    let productes = DB.productes;
-    return productes;
-  } catch (error) {
-    throw { status: 500, message: error };
-  }
-};
 
-const getOneProducte = (producteId) => {
+const getOneTask = (taskId) => {
   try {
-    const producte = DB.productes.find((producte) => producte.id === producteId);
-
-    if (!producte) {
+    const task = DB.tasks.find((tasks) => tasks.id ==taskId);
+    if (!task) {
       throw {
         status: 400,
-        message: `Can't find producte with the id '${producteId}'`,
+        message: `Can't find task with the id '${taskId}'`,
       };
     }
-
-    return producte;
+    return task;
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
   }
 };
 
-const createNewProducte = (newProducte) => {
+const getAllTaskOneUser = (taskId,filterParams) => {
+  try {
+      const tasks= DB.tasks.filter((task) => task.id == taskId);
+      if(filterParams.status){
+        return DB.tasks.filter(task=>task.id==taskId && task.status.toLocaleLowerCase().includes(filterParams.status))
+      }
+      if (tasks.length === 0) {
+          throw {
+            status: 400,
+            message: `Can't find estocs for product with the id '${taskId}'`,
+          };
+        }
+      
+      return tasks;
+
+  } catch (error) {
+    throw { status: 500, message: error };
+  }
+};
+
+
+
+
+const createNewTask = (newTask) => {
   try {
     const isAlreadyAdded =
-      DB.productes.findIndex((producte) => producte.nom === newProducte.nom) > -1;
+      DB.tasks.findIndex((task) => task.id === newTask.id) > -1;
 
     if (isAlreadyAdded) {
       throw {
         status: 400,
-        message: `Product with the name '${newProducte.nom}' already exists`,
+        message: `Product with the name '${newTask.id}' already exists`,
       };
     }
 
-    DB.productes.push(newProducte);
+    DB.tasks.push(newTask);
     saveToDatabase(DB);
-    return newProducte;
+    return newTask;
 
   } catch (error) {
     throw { status: 500, message: error?.message || error };
   }
 };
 
-const updateOneProducte = (producteId, changes) => {
+const updateOneTask = (taskId, changes) => {
   try {
     const isAlreadyAdded =
-      DB.productes.findIndex((producte) => producte.nom === changes.nom) > -1;
+      DB.tasks.findIndex((task) => task.id == changes.id) > -1;
 
     if (isAlreadyAdded) {
       throw {
         status: 400,
-        message: `Producte with the name '${changes.nom}' already exists`,
+        message: `Producte with the name '${changes.id}' already exists`,
       };
     }
 
-    const indexForUpdate = DB.productes.findIndex(
-      (producte) => producte.id === producteId
+    const indexForUpdate = DB.tasks.findIndex(
+      (task) => task.id == taskId
     );
 
     if (indexForUpdate === -1) {
       throw {
         status: 400,
-        message: `Can't find producte with the id '${producteId}'`,
+        message: `Can't find producte with the id '${taskId}'`,
       };
     }
 
-    const updatedProducte = {
-      ...DB.productes[indexForUpdate],
+    const updatedTask = {
+      ...DB.tasks[indexForUpdate],
       ...changes,
       updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
     };
 
-    DB.productes[indexForUpdate] = updatedProducte;
+    DB.tasks[indexForUpdate] = updatedTask;
     saveToDatabase(DB);
 
-    return updatedProducte;
+    return updatedTask;
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
   }
 };
 
-const deleteOneProducte = (producteId) => {
+const deleteOneTask = (taskId) => {
   try {
-    const indexForDeletion = DB.productes.findIndex(
-      (producte) => producte.id === producteId
+    const indexForDeletion = DB.tasks.findIndex(
+      (task) => task.id == taskId
     );
     if (indexForDeletion === -1) {
       throw {
         status: 400,
-        message: `Can't find producte with the id '${producteId}'`,
+        message: `Can't find task with the id '${taskId}'`,
       };
     }
-    DB.productes.splice(indexForDeletion, 1);
+    DB.tasks.splice(indexForDeletion, 1);
     saveToDatabase(DB);
   } catch (error) {
     throw { status: error?.status || 500, message: error?.message || error };
@@ -105,9 +118,9 @@ const deleteOneProducte = (producteId) => {
 };
 
 module.exports = {
-  getAllProductes,
-  getOneProducte,
-  createNewProducte,
-  updateOneProducte,
-  deleteOneProducte,
+  getOneTask,
+  getAllTaskOneUser,
+  createNewTask,
+  updateOneTask,
+  deleteOneTask,
 };

@@ -1,14 +1,13 @@
 const express = require("express");
-const estocController = require("../../controllers/estocController");
+const tasksController = require("../../controllers/tasksController");
 
 const router = express.Router();
 
 router
-  .get("/", estocController.getAllEstocs)
-  .get("/", estocController.getAllEstocsDisponibles)
-  .get("/:estocId", estocController.getOneEstoc)
-  .post("/", estocController.createNewEstoc)
-  .patch("/:estocId", estocController.updateOneEstoc)
-  .delete("/:estocId", estocController.deleteOneEstoc);
+  .get("/:taskId", tasksController.getOneTask)
+  .get("/:taskId/users", tasksController.getAllTaskOneUser)
+  .post("/", tasksController.createNewTask)
+  .patch("/:taskId",tasksController.updateOneTask)
+  .delete("/:taskId",tasksController.deleteOneTask);
 
 module.exports = router;

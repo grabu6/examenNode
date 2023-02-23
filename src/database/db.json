@@ -1,170 +1,52 @@
 {
-  "categoria": [
+  "tasks": [
     {
-      "id": "12345",
-      "nom": "Categoría 1",
-      "IVA": 0.21,
-      "createdAt": "2023-02-14T10:00:00.000Z",
-      "updatedAt": "2023-02-14T10:00:00.000Z"
+      "id": 3,
+      "user": "Bob",
+      "title": "Realizar pruebas de calidad en el producto",
+      "description": "El producto debe ser sometido a pruebas de calidad antes de su lanzamiento",
+      "status": "TODO",
+      "createdAt": "2022-02-21T16:23:45.000Z",
+      "updatedAt": "2/23/2023, 6:30:41 PM"
     },
     {
-      "id": "67890",
-      "nom": "Categoría 2",
-      "IVA": 0.16,
-      "createdAt": "2023-02-14T11:00:00.000Z",
-      "updatedAt": "2023-02-14T11:00:00.000Z"
+      "user": "Albert Einstein",
+      "title": "Revisar el excel",
+      "description": "El nuevo excel debe ser revisado y aprobado antes del lanzamiento",
+      "status": "DOING",
+      "id": 549495498954,
+      "createdAt": "2/23/2023, 5:46:24 PM",
+      "updatedAt": "2/23/2023, 5:46:24 PM"
     }
   ],
-  "productes": [
+  "users": [
     {
-      "id": "8de9d59b-0772-4cb3-a4e7-50441e4a26b0",
-      "nom": "patata",
-      "tipus": "menjar",
-      "preu": "1.5",
-      "categoria": "rapid",
-      "createdAt": "2/22/2023, 1:39:21 PM",
-      "updatedAt": "2/22/2023, 1:39:21 PM"
+      "id": 1,
+      "username": "john_doe",
+      "fullName": "John Doe",
+      "createdAt": "2022-02-23T10:15:30Z",
+      "updatedAt": "2022-02-23T11:20:15Z"
     },
     {
-      "nom": "pastanaga",
-      "tipus": "menjar",
-      "preu": "1.5",
-      "categoria": "rapid",
-      "id": "69e3f3bd-fa67-4fd6-82ed-af56f3cb8093",
-      "createdAt": "2/22/2023, 2:05:49 PM",
-      "updatedAt": "2/22/2023, 2:05:49 PM"
+      "id": 2,
+      "username": "jane_smith",
+      "fullName": "Jane Smith",
+      "createdAt": "2022-02-22T08:00:00Z",
+      "updatedAt": "2022-02-23T09:10:30Z"
     },
     {
-      "nom": "tomata",
-      "tipus": "menjar",
-      "preu": 10.5,
-      "categoria": "3",
-      "id": "e32c1539-2039-42a3-84be-888c2d9d3c07",
-      "createdAt": "2/22/2023, 5:45:42 PM",
-      "updatedAt": "2/22/2023, 7:46:19 PM"
+      "id": 3,
+      "username": "bob_johnson",
+      "fullName": "Bob Johnson",
+      "createdAt": "2022-02-20T15:30:45Z",
+      "updatedAt": "2022-02-23T12:45:00Z"
     },
     {
-      "nom": "cogombre",
-      "tipus": "verdura",
-      "preu": 10.5,
-      "categoria": "5",
-      "id": "a537a9f5-c5a7-4060-9de5-bf785cfb4f26",
-      "createdAt": "2/22/2023, 7:40:49 PM",
-      "updatedAt": "2/22/2023, 7:40:49 PM"
-    }
-  ],
-  "estocs": [
-    {
-      "id": "XYZ789",
-      "producte": "ABC123",
-      "caducitat": "2023-05-01",
-      "venda": "2023-02-14",
-      "ubicacio": "Estoc 1",
-      "createdAt": "2023-02-14T10:00:00.000Z",
-      "updatedAt": "2023-02-14T10:00:00.000Z"
-    },
-    {
-      "id": "GHI101",
-      "producte": "DEF456",
-      "caducitat": "2023-07-01",
-      "venda": "",
-      "ubicacio": "Estoc 2",
-      "createdAt": "2023-02-14T11:00:00.000Z",
-      "updatedAt": "2/22/2023, 10:16:05 PM"
-    },
-    {
-      "producte": "patata",
-      "caducitat": "11/11/11",
-      "venda": "11/10/11",
-      "categoria": "rapid",
-      "ubicacio": "Olot",
-      "id": "8de9d50772-4cb3-a4e7-50441e4a26b0",
-      "createdAt": "2/22/2023, 1:49:54 PM",
-      "updatedAt": "2/22/2023, 1:49:54 PM"
-    },
-    {
-      "producte": "patata",
-      "caducitat": "11/11/11",
-      "venda": "11/10/11",
-      "categoria": "rapid",
-      "ubicacio": "Olot",
-      "id": "8de9d59b--4cb3-a4e7-50441e4a26b0",
-      "createdAt": "2/22/2023, 1:49:54 PM",
-      "updatedAt": "2/22/2023, 1:49:54 PM"
-    },
-    {
-      "producte": "patadgfadfta",
-      "caducitat": "11/11/11",
-      "venda": "11/12/11",
-      "categoria": "rapid",
-      "ubicacio": "Olot",
-      "id": "dd37f129-40fe-4b0a-bf8a-ac6ed279812b",
-      "createdAt": "2/22/2023, 1:50:01 PM",
-      "updatedAt": "2/22/2023, 1:50:01 PM"
-    },
-    {
-      "producte": "patadgfdasgfaadfta",
-      "caducitat": "11/11/11",
-      "venda": "11/10/11",
-      "categoria": "rapid",
-      "ubicacio": "Olot",
-      "id": "a537a9f5-c5a7-4060-9de5-bf785cfb4f26",
-      "createdAt": "2/22/2023, 1:51:44 PM",
-      "updatedAt": "2/22/2023, 1:51:44 PM"
-    },
-    {
-      "producte": "patata",
-      "caducitat": "11/11/11",
-      "venda": "11/10/11",
-      "categoria": "rapid",
-      "ubicacio": "Olot",
-      "id": "18b1ebf1-1c64-4b0e-995b-8d2d630fedb0",
-      "createdAt": "2/22/2023, 1:52:03 PM",
-      "updatedAt": "2/22/2023, 1:52:03 PM"
-    },
-    {
-      "producte": "pataasf123ta",
-      "caducitat": "11/11/11",
-      "venda": "11/11/11",
-      "categoria": "rapid",
-      "ubicacio": "Olot",
-      "id": "44a88a13-315d-4935-ad43-075f5d295ffe",
-      "createdAt": "2/22/2023, 1:52:11 PM",
-      "updatedAt": "2/22/2023, 1:52:11 PM"
-    }
-  ],
-
-  "calaixos":[
-    {
-      "id": "1",
-      "maquina": "1",
-      "casella": "1",
-      "createdAt": "1/25/2022, 1:15:44 PM",
-      "updatedAt": "3/10/2022, 8:21:56 AM"
-    },
-    
-    {
-      "id": "12332",
-      "maquina": "2",
-      "casella": "1",
-      "createdAt": "1/25/2022, 1:15:44 PM",
-      "updatedAt": "3/10/2022, 8:21:56 AM"
-    }
-  ],
-  "maquina": [
-    {
-      "id": "1",
-      "municipi": "Barcelona",
-      "adreça": "Carrer de Balmes, 1",
-      "createdAt": "2023-02-13T10:00:00Z",
-      "updatedAt": "2023-02-13T10:00:00Z"
-    },
-    {
-      "id": "2",
-      "municipi": "Madrid",
-      "adreça": "Calle de Alcalá, 1",
-      "createdAt": "2023-02-13T10:00:00Z",
-      "updatedAt": "2023-02-13T10:00:00Z"
+      "username": "albert",
+      "fullName": "Albert Einstein",
+      "id": "2e1f6ba3-4e8b-429f-9781-e0d6599cd8b6",
+      "createdAt": "2/23/2023, 5:35:16 PM",
+      "updatedAt": "2/23/2023, 5:35:16 PM"
     }
   ]
 }

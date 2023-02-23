@@ -1,34 +1,25 @@
 const { v4: uuid } = require("uuid");
-const Productes = require("../database/Productes");
+const Users = require("../database/Users");
 
-const getAllProductes = () => {
+const getAllUsers = () => {
   try {
-    const allProductes= Productes.getAllProductes();
-    return allProductes;
+    const allUsers= Users.getAllUsers();
+    return allUsers;
   } catch (error) {
     throw error;
   }
 };
 
-const getOneProducte = (producteId) => {
-  try {
-    const producte= Productes.getOneProducte(producteId);
-    return producte;
-  } catch (error) {
-    throw error;
-  }
-};
-
-const createNewProducte = (newProducte) => {
-  const producteToInsert = {
-    ...newProducte,
+const createNewUsuari = (newUsuari) => {
+  const usuariToInsert = {
+    ...newUsuari,
     id: uuid(),
     createdAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
     updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
   };
   try {
-    const createdProducte = Productes.createNewProducte(producteToInsert);
-    return createdProducte;
+    const usuariCreated = Users.createNewUsuari(usuariToInsert);
+    return usuariCreated;
   } catch (error) {
     throw error;
   }
@@ -52,9 +43,8 @@ const deleteOneProducte = (producteId) => {
 };
 
 module.exports = {
-  getAllProductes,
-  getOneProducte,
-  createNewProducte,
+  getAllUsers,
+  createNewUsuari,
   updateOneProducte,
   deleteOneProducte,
 };

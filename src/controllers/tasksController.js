@@ -1,31 +1,20 @@
-const producteService = require("../services/productesService");
+const tasksServices = require("../services/tasksServices");
 
-const getAllProductes = (req, res) => {
-  try {
-    const allProductes = producteService.getAllProductes();
-    res.send({status: "OK", data: allProductes});
-  } catch (error) {
-    res
-      .status(error?.status || 500)
-      .send({ status: "FAILED", data: { error: error?.message || error } });
-  }
-};
-
-const getOneProducte = (req, res) => {
+const getOneTask = (req, res) => {
   const {
-    params: { producteId },
+    params: { taskId },
   } = req;
-  if (!producteId) {
+  if (!taskId) {
     res.status(400).send({
       status: "FAILED",
-      data: { error: "Parameter ':producteId' can not be empty" },
+      data: { error: "Parameter ':taskId' can not be empty" },
     });
     return;
   }
 
   try {
-    const producte = producteService.getOneProducte(producteId);
-    res.send({ status: "OK", data: producte });
+    const task = tasksServices.getOneTask(taskId);
+    res.send({ status: "OK", data: task });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -33,34 +22,52 @@ const getOneProducte = (req, res) => {
   }
 };
 
-const createNewProducte = (req, res) => {
+
+const getAllTaskOneUser = (req, res) => {
+  
+  const {status}=req.query;
+  const {
+    params: { taskId },
+  } = req;
+  try {
+    const allTasks = tasksServices.getAllTaskOneUser(taskId,{status});
+    res.send({status: "OK", data: allTasks});
+  } catch (error) {
+    res
+      .status(error?.status || 500)
+      .send({ status: "FAILED", data: { error: error?.message || error } });
+  }
+};
+
+
+const createNewTask = (req, res) => {
   const { body } = req;
 
   if (
-      !body.nom ||
-      !body.tipus ||
-      !body.preu ||
-      !body.categoria 
+      !body.user ||
+      !body.title ||
+      !body.description ||
+      !body.status 
   ) {
     res.status(400).send({
       status: "FAILED",
       data: {
         error:
-          "One of the following keys is missing or is empty in request body: 'nom', 'tipus', 'preu', 'categoria'",
+          "One of the following keys is missing or is empty in request body: 'user', 'title', 'description', 'status'",
       },
     });
   }
 
-  const newProducte = {
-    nom: body.nom,
-    tipus: body.tipus,
-    preu: body.preu,
-    categoria: body.categoria,
+  const newTask = {
+    user: body.user,
+    title: body.title,
+    description: body.description,
+    status: body.status,
   };
 
   try {
-    const createdProducte = producteService.createNewProducte(newProducte);
-    res.status(201).send({ status: "OK", data: createdProducte });
+    const createdTask = tasksServices.createNewTask(newTask);
+    res.status(201).send({ status: "OK", data: createdTask });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -68,22 +75,22 @@ const createNewProducte = (req, res) => {
   }
 };
 
-const updateOneProducte = (req, res) => {
+const updateOneTask = (req, res) => {
   const {
     body,
-    params: { producteId },
+    params: { taskId },
   } = req;
 
-  if (!producteId) {
+  if (!taskId) {
     res.status(400).send({
       status: "FAILED",
-      data: { error: "Parameter ':producteId' can not be empty" },
+      data: { error: "Parameter ':taskId' can not be empty" },
     });
   }
 
   try {
-    const updatedProducte =producteService.updateOneProducte(producteId, body);
-    res.send({ status: "OK", data: updatedProducte });
+    const updatedTask =tasksServices.updateOneTask(taskId, body);
+    res.send({ status: "OK", data: updatedTask });
   } catch (error) {
     res
       .status(error?.status || 500)
@@ -91,20 +98,20 @@ const updateOneProducte = (req, res) => {
   }
 };
 
-const deleteOneProducte = (req, res) => {
+const deleteOneTask= (req, res) => {
   const {
-    params: { producteId },
+    params: { taskId },
   } = req;
 
-  if (!producteId) {
+  if (!taskId) {
     res.status(400).send({
       status: "FAILED",
-      data: { error: "Parameter ':producteId' can not be empty" },
+      data: { error: "Parameter ':taskId' can not be empty" },
     });
   }
 
   try {
-    producteService.deleteOneProducte(producteId);
+    tasksServices.deleteOneTask(taskId);
     res.status(204).send({ status: "OK" });
   } catch (error) {
     res
@@ -114,9 +121,9 @@ const deleteOneProducte = (req, res) => {
 };
 
 module.exports = {
-  getAllProductes,
-  getOneProducte,
-  createNewProducte,
-  updateOneProducte,
-  deleteOneProducte,
+  getOneTask,
+  getAllTaskOneUser,
+  createNewTask,
+  updateOneTask,
+  deleteOneTask,
 };
